@@ -6,8 +6,6 @@ C$ Finance is a web application that simulates stock trading, allowing users to:
 - Track transaction history
 - View portfolio performance
 
-This full-stack project demonstrates my ability to integrate databases with web applications and financial APIs.
-
 ## Key Features
 - User Authentication: Secure registration and login system
 - Real-time Stock Data: Integration with IEX Cloud API
