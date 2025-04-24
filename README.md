@@ -1,2 +1,24 @@
-# CS-Finance
-C$ Finance , a simple portfolio management webapp
+## Project Overview
+C$ Finance is a web application that simulates stock trading, allowing users to:
+- Check real-time stock prices via IEX Cloud API
+- Manage virtual portfolios
+- "Buy" and "sell" stocks
+- Track transaction history
+- View portfolio performance
+
+This full-stack project demonstrates my ability to integrate databases with web applications and financial APIs.
+
+## Key Features
+- User Authentication: Secure registration and login system
+- Real-time Stock Data: Integration with IEX Cloud API
+- Portfolio Management: Track owned stocks and cash balance
+- Transaction System: Buy/sell functionality with validation
+- History Tracking: Complete record of all transactions
+- Responsive Design: Works across desktop and mobile devices
+
+## Technical Stack
+- Backend: Python with Flask
+- Frontend: HTML, CSS
+- Database: SQLite 
+- API: IEX Cloud for real-time stock data
+- Security: Password hashing
