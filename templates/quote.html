@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <div style="text-align: center;">
+        <div style="width: 500px; margin: auto;">
+            <h1>Quote</h1>
+            <form action="/quote" method="POST" id="form">
+                <div class="mb-3">
+                    <input autofocus class="form-control mx-auto w-auto input-field" id="symbol" name="symbol" placeholder="Search for stocks" type="text">
+                    <br>
+                    <button class="button" type="submit">Search</button>
+                </div>
+            </form>
+
+            {% if submitted %}
+                {% if result %}
+                    <h2 style="display: inline-block;">{{ result.name }}</h2>
+                    <h6 class="gray" style="text-align: left; display: inline-block; margin-left: 10px; vertical-align: down">{{ result.symbol }}</h6>
+
+                    <p>
+                        <h3 style="display: inline-block;">${{ result.price | round(2) }}</h3>
+                        {% if result.change > 0 %}
+                            <span class="currency" style="display: inline-block; font-size: larger">
+                                {{ result.currency }}
+                                <span style="color: #34e36f">&#9650;</span>
+                                <span style="color: #34e36f">{{ result.change | round(2) }} (+{{ result.changePercent * 100 | round(2) }}%) today</span>
+                            </span>
+                        {% else %}
+                            <span class="currency" style="display: inline-block; font-size: larger">
+                                {{ result.currency }}
+                                <span style="color: red">&#x25BC;</span>
+                                <span style="color: red">{{ result.change | round(2) }} ({{ result.changePercent * 100 | round(2) }}%) today</span>
+                            </span>
+                        {% endif %}
+                        <br>
+                        <span style="color: #939393">
+                            Last Updated: {{ result.latestUpdate | format_time }} EST
+                            {% if not result.isUSMarketOpen %}
+                                <span style="color: #939393">· Market Closed</span>
+                            {% elif result.isUSMarketOpen %}
+                                <span style="color: #939393">· Market Open</span>
+                            {% else %}
+                                <span style="color: #939393">· After Hours</span>
+                            {% endif %}
+                        </span>
+                    </p>
+
+                    <!-- Table of important data -->
+                    <div style="color: #ffffff; border-radius: 10px; background-color: #161e2d; border: 1px solid #313947; padding: 10px; margin: 20px auto; width: 100%; max-width: 500px;">
+                        <table style="color: #ffffff; width: 100%; border-radius: 10px;">
+                            <tbody>
+                                <tr>
+                                    <th class="unbold" scope="row">Previous Close</th>
+                                    <td><b>${{ result.previousClose | round(2) }}</b></td>
+                                </tr>
+
+                                <tr>
+                                    <th class="unbold" scope="row">Day Range</th>
+                                    <td><b>${{ result.dayLow }} - ${{ result.dayHigh }}</b></td>
+                                </tr>
+
+                                <tr>
+                                    <th class="unbold" scope="row">52 Week Range</th>
+                                    <td><b>${{ result.week52Low }} - ${{ result.week52High }}</b></td>
+                                </tr>
+
+                                <tr>
+                                    <th class="unbold" scope="row">Market Cap</th>
+                                    <td><b>${{ result.marketCap | round(2) }}</b></td>
+                                </tr>
+
+                                <tr>
+                                    <th class="unbold" scope="row">Avg. Volume</th>
+                                    <td><b>{{ result.avgTotalVolume }}</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                {% else %}
+                    <!-- If no valid results were found -->
+                    <p>Symbol not found.</p>
+                {% endif %}
+            {% endif %}
+        </div> <!-- End of inner div -->
+    </div> <!-- End of center div -->
+{% endblock %}

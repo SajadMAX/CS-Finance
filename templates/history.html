@@ -1,0 +1,77 @@
+<!-- {% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <div class="table-responsive-md">
+        <table class="table mx-auto w-50">
+            <thead>
+                <tr class="table-active">
+                    <th scope="col">Company Name</th>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Shares</th>
+                    <th scope="col">Action</th>
+                    <th scope="col">Balance</th>
+                    <th scope="col">Transacted</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stock in portfolio %}
+                <tr class="table-light">
+                    <td>{{ stock["name"] }}</td>
+                    <td>{{ stock["symbol"] }}</td>
+                    <td>{{ stock["shares"] }}</td>
+                    <td>{{ stock["action"] }}</td>
+                    <td>{{ stock["balance"] }}</td>
+                    <td>{{ stock["date"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %} -->
+
+
+
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Transaction History
+{% endblock %}
+
+{% block main %}
+    <div class="table-responsive-md">
+        <h1 class="text-center">Your Transaction History</h1>
+        <table class="table mx-auto w-75">
+            <thead>
+                <tr class="table-active">
+                    <th scope="col">Transaction ID</th>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Date & Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if transactions %}
+                    {% for transaction in transactions %}
+                    <tr class="table-light">
+                        <td>{{ transaction.id }}</td>
+                        <td>{{ transaction.symbol }}</td>
+                        <td>{{ transaction.quantity }}</td>
+                        <td>{{ transaction.price }}</td>
+                        <td>{{ transaction.timestamp }}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center">No transactions found.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

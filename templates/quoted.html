@@ -1,0 +1,66 @@
+<!-- {% extends "layout.html" %}
+
+{% block title %}
+    Search Results
+{% endblock %}
+
+{% block main %}
+    <table class="table table-light mx-auto w-25">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Symbol</th>
+                <th scope="col">Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ stock.name }}</td>
+                <td>{{ stock.symbol }}</td>
+                <td>{{ stock.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %} -->
+
+
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Search Results for {{ result.symbol }}
+{% endblock %}
+
+{% block main %}
+    <h1 class="text-center">Stock Quote</h1>
+    <div class="table-responsive">
+        <table class="table table-light mx-auto w-50">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Current Price</th>
+                    <th scope="col">Market Cap</th>
+                    <th scope="col">52 Week High</th>
+                    <th scope="col">52 Week Low</th>
+                    <th scope="col">PE Ratio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ result.name }}</td>
+                    <td>{{ result.symbol }}</td>
+                    <td>${{ result.price | round(2) }}</td>  <!-- Format price to two decimal places -->
+                    <td>${{ result.marketCap | round(2) }}</td>  <!-- Format market cap -->
+                    <td>${{ result.week52High | round(2) }}</td>  <!-- Format 52 week high -->
+                    <td>${{ result.week52Low | round(2) }}</td>  <!-- Format 52 week low -->
+                    <td>{{ result.peRatio }}</td>  <!-- Display PE ratio -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center">
+        <a href="{{ url_for('quote') }}" class="btn btn-primary">Search Another Stock</a>
+    </div>
+{% endblock %}
