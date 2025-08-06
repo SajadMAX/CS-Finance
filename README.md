@@ -1,5 +1,5 @@
 ## Project Overview
-C$ Finance is a web application that simulates stock trading, allowing users to:
+C$ Finance is a web application that simulates stock trading, allowing users toREA:
 - Check real-time stock prices via IEX Cloud API
 - Manage virtual portfolios
 - "Buy" and "sell" stocks
